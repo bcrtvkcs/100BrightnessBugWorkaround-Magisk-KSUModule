@@ -14,14 +14,14 @@ update_status "Waiting for boot" "⏳"
 
 # Wait for system boot
 until [ "$(getprop sys.boot_completed)" = "1" ]; do
-    sleep 1
+    sleep 3
 done
 
 update_status "Waiting for user unlock" "🔒"
 
 # Wait for user data to be decrypted
 until [ "$(getprop sys.user.0.ce_available)" = "true" ]; do
-    sleep 1
+    sleep 3
 done
 
 # Wait 5 seconds after unlock to ensure the UI is fully responsive
