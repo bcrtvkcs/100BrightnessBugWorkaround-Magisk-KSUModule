@@ -19,22 +19,29 @@ until [ "$(getprop sys.boot_completed)" = "1" ]; do
     sleep 1
 done
 
-# Wait 5 seconds for the system to settle before cycling the screen
-sleep 5
+update_status "Waiting for user unlock" "🔒"
+
+# Wait for the user to unlock the device for the first time
+until [ "$(getprop sys.user.0.ce_available)" = "true" ]; do
+    sleep 1
+done
+
+# Wait 2 seconds after the lock screen is opened
+sleep 2
 
 update_status "Running script" "⚙️"
 
 # Disable Always-On Display
 settings put secure doze_always_on 0
-sleep 0.2
+sleep 0.1
 
 # Turn off the screen
 input keyevent 26
-sleep 0.2
+sleep 0.1
 
 # Wake up the screen
 input keyevent 224
-sleep 0.2
+sleep 0.1
 
 # Re-enable Always-On Display
 settings put secure doze_always_on 1
