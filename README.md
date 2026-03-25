@@ -1,4 +1,4 @@
-# 100% Brightness Bug Workaround
+# 100% Brightness Bug Workaround Magisk & KSU Module
 
 A Magisk / KernelSU module that automatically toggles the Always-On Display (AOD) and cycles the screen state upon boot to bypass the 100% brightness bug.
 
