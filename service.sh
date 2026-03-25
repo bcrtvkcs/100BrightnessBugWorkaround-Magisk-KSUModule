@@ -1,9 +1,7 @@
 #!/system/bin/sh
 
-# Dynamic module directory path
 MODDIR="${0%/*}"
 
-# Update module status
 update_status() {
     local status_text="$1"
     local status_emoji="$2"
@@ -14,24 +12,24 @@ update_status() {
 
 update_status "Waiting for boot" "⏳"
 
-# Wait for boot completion
+# Wait for system boot
 until [ "$(getprop sys.boot_completed)" = "1" ]; do
     sleep 1
 done
 
 update_status "Waiting for user unlock" "🔒"
 
-# Wait for the user to unlock the device for the first time
+# Wait for user data to be decrypted
 until [ "$(getprop sys.user.0.ce_available)" = "true" ]; do
     sleep 1
 done
 
-# Wait 2 seconds after the lock screen is opened
-sleep 2
+# Wait 5 seconds after unlock to ensure the UI is fully responsive
+sleep 5
 
 update_status "Running script" "⚙️"
 
-# Disable Always-On Display
+# Apply the fix sequence
 settings put secure doze_always_on 0
 sleep 0.1
 
