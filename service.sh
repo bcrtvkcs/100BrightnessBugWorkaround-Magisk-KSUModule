@@ -14,7 +14,7 @@ update_status "Waiting for boot" "⏳"
 
 # Wait for system boot
 until [ "$(getprop sys.boot_completed)" = "1" ]; do
-    sleep 3
+    sleep 7
 done
 
 update_status "Waiting for user unlock" "🔒"
