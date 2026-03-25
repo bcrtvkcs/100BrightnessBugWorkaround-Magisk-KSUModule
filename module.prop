@@ -1,0 +1,7 @@
+id=100BrightnessBugWorkaround-Magisk-KSUModule
+name=100% Brightness Bug Workaround
+version=1.0.0
+versionCode=1
+author=BCRTVKCS
+description=Automatically toggles the Always-On Display (AOD) and cycles the screen state upon boot to bypass the 100% brightness bug.
+updateJson=https://raw.githubusercontent.com/bcrtvkcs/100BrightnessBugWorkaround-Magisk-KSUModule/main/update.json
