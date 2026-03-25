@@ -24,4 +24,4 @@ ui_print ""
 
 # Update status
 sed -i '/description/d' $MODPATH/module.prop
-echo "description=Status: Installed ✅\nAutomatically toggles the Always-On Display (AOD) and cycles the screen state upon boot to bypass the 100% brightness bug." >> $MODPATH/module.prop
+echo "description=Status: Installed ✅\\\\nAutomatically toggles the Always-On Display (AOD) and cycles the screen state upon boot to bypass the 100% brightness bug." >> $MODPATH/module.prop
