@@ -1,7 +1,9 @@
 #!/system/bin/sh
 
+# Dynamic module directory path
 MODDIR="${0%/*}"
 
+# Function to update module description status
 update_status() {
     local status_text="$1"
     local status_emoji="$2"
@@ -10,38 +12,40 @@ update_status() {
     sed -i "s|^description=.*|$new_description|" "$MODDIR/module.prop"
 }
 
+# Function to execute the brightness bug workaround sequence
+apply_workaround() {
+    settings put secure doze_always_on 0
+    sleep 0.1
+    input keyevent 26
+    sleep 0.1
+    input keyevent 224
+    sleep 0.1
+    settings put secure doze_always_on 1
+}
+
 update_status "Waiting for boot" "⏳"
 
-# Wait for system boot
+# Phase 1: Wait for system boot completion
 until [ "$(getprop sys.boot_completed)" = "1" ]; do
     sleep 10
 done
 
+# Run the first fix attempt immediately after boot (Pre-Unlock)
+update_status "Running Pre-Unlock Fix" "⚙️"
+apply_workaround
+
 update_status "Waiting for user unlock" "🔒"
 
-# Wait for user data to be decrypted
+# Phase 2: Wait for user data to be decrypted (First manual unlock)
 until [ "$(getprop sys.user.0.ce_available)" = "true" ]; do
     sleep 5
 done
 
-# Wait 5 seconds after unlock to ensure the UI is fully responsive
+# Wait for the system UI to stabilize after unlock
 sleep 5
 
-update_status "Running script" "⚙️"
-
-# Apply the fix sequence
-settings put secure doze_always_on 0
-sleep 0.1
-
-# Turn off the screen
-input keyevent 26
-sleep 0.1
-
-# Wake up the screen
-input keyevent 224
-sleep 0.1
-
-# Re-enable Always-On Display
-settings put secure doze_always_on 1
+# Run the second fix attempt (Post-Unlock)
+update_status "Running Post-Unlock Fix" "⚙️"
+apply_workaround
 
 update_status "Completed" "✅"
