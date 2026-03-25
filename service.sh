@@ -7,7 +7,7 @@ MODDIR="${0%/*}"
 update_status() {
     local status_text="$1"
     local status_emoji="$2"
-    local new_description="description=Status: $status_text $status_emoji\nAutomatically toggles the Always-On Display (AOD) and cycles the screen state upon boot to bypass the 100% brightness bug."
+    local new_description="description=Status: $status_text $status_emoji\\\\nAutomatically toggles the Always-On Display (AOD) and cycles the screen state upon boot to bypass the 100% brightness bug."
     
     sed -i "s|^description=.*|$new_description|" "$MODDIR/module.prop"
 }
