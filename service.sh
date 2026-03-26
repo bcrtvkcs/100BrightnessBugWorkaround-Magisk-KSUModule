@@ -38,7 +38,7 @@ update_status "Waiting for user unlock" "🔒"
 
 # Phase 2: Wait for user data to be decrypted (First manual unlock)
 until [ "$(getprop sys.user.0.ce_available)" = "true" ]; do
-    sleep 10
+    sleep 15
 done
 
 # Wait for the system UI to stabilize after unlock
