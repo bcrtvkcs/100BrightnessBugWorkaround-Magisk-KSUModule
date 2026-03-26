@@ -27,7 +27,7 @@ update_status "Waiting for boot" "⏳"
 
 # Phase 1: Wait for system boot completion
 until [ "$(getprop sys.boot_completed)" = "1" ]; do
-    sleep 7
+    sleep 10
 done
 
 # Run the first fix attempt immediately after boot (Pre-Unlock)
