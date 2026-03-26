@@ -1,3 +1,7 @@
+## v1.0.4
+
+* **Enhanced Timing Reliability:** Increased the delay after user unlock to 10 seconds to ensure the system UI is fully stabilized before cycling the screen.
+
 ## v1.0.3
 
 * **Dual-Phase Execution:** Implemented a two-stage workaround that triggers both immediately after system boot completion (Pre-Unlock) and again after the first successful user unlock (Post-Unlock). This ensures the brightness bug is bypassed regardless of when it occurs during the startup cycle.
